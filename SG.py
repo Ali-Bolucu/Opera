@@ -52,15 +52,14 @@ while True:
             new_message = new_message.replace(old_message,"")
             new_message = "!!NEW \n" + new_message
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
-            requests.get(url).json() # this sends the new_message
             
         elif new_message in old_message:
             
             old_message = old_message.replace(new_message,"")
             old_message = "!!Deleted \n" + old_message
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={old_message}"
-            [requests.get(url).json() and time.sleep(x) for x in range(20)] # 20 defa yolluyor
         
+        [requests.get(url).json() and time.sleep(x) for x in range(20)] # this sends the new_message
     """
     else:
         a = "no change"
