@@ -3,12 +3,13 @@ import json
 from bs4 import BeautifulSoup
 import time
 
-
+reset_signal = 0
 new_message = "" # aslında eskisi
 message_change = ""
 
 TOKEN = "5741061538:AAFBQz2VitaWwuTX-LJATOaolmFq3Wc3J4E"
 chat_id = "866992945"
+
 
 while True:
 
@@ -39,7 +40,7 @@ while True:
         #print(date + " || " + name)
         message += date + " || " + name + "\n \n"
 
-    if message != new_message:
+    if message != new_message and reset_signal:
         
         message_change = message
         
@@ -61,10 +62,12 @@ while True:
         
         new_message = message_change
         message  = message_change
+        """
     else:
         a = "no change"
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={a}"
         requests.get(url).json() # this sends the message
+        """
         
-
-    time.sleep(1800)
+    reset_signal = 1
+    time.sleep(300)
