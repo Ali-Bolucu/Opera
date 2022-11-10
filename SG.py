@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 import time
 
 reset_signal = 0
-new_message = "" # aslında eskisi
-message_change = ""
+old_message = "" 
+message_backup = ""
 
 TOKEN = "5741061538:AAFBQz2VitaWwuTX-LJATOaolmFq3Wc3J4E"
 chat_id = "866992945"
@@ -17,11 +17,11 @@ while True:
     opera = requests.get('https://biletinial.com/dynamic/getetkinliktakvimi/713?cityId=3')
 
     if opera:
-        message = ""
-        print("Website is on \n")
+        new_message = ""
+        #print("Website is on \n")
     else:
-        message = "!!!ERRORRR"
-        print("!!ERROR")
+        new_message = "!!!ERRORRR"
+        #print("!!ERROR")
         
     #check = b'Tosca' in opera.content
 
@@ -38,36 +38,37 @@ while True:
         name = " ".join(name.split())
         date  = " ".join(date.split())
         #print(date + " || " + name)
-        message += date + " || " + name + "\n \n"
+        new_message += date + " || " + name + "\n \n"
 
-    if message != new_message and reset_signal:
+    if new_message != old_message and reset_signal:
         
-        message_change = message
+        message_backup = new_message
         
-        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
-        requests.get(url).json() # this sends the message
+        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
+        requests.get(url).json() # this sends the new_message
         
-        if new_message in message:  # yeni mesajdan eskisi siliniyor
+        if old_message in new_message:  # yeni mesajdan eskisi siliniyor
             
-            message = message.replace(new_message,"")
-            url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
-            requests.get(url).json() # this sends the message
-            
-        elif message in new_message:
-            
-            new_message = new_message.replace(message,"")
-            new_message = "!!Deleted \n" + new_message
+            new_message = new_message.replace(old_message,"")
+            new_message = "!!NEW \n" + new_message
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
-            requests.get(url).json() # this sends the message            
-        
-        new_message = message_change
-        message  = message_change
-        """
+            requests.get(url).json() # this sends the new_message
+            
+        elif new_message in old_message:
+            
+            old_message = old_message.replace(new_message,"")
+            old_message = "!!Deleted \n" + old_message
+            url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={old_message}"
+            requests.get(url).json() # this sends the new_message                    
+    """
     else:
         a = "no change"
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={a}"
-        requests.get(url).json() # this sends the message
-        """
+        requests.get(url).json() # this sends the new_message
+    
+    """
+    old_message = message_backup
+    new_message  = message_backup
         
     reset_signal = 1
     time.sleep(300)
