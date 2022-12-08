@@ -25,7 +25,7 @@ while True:
         new_message = opera
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
         requests.get(url).json() # this sends the new_message
-        
+        time.sleep(60)
         
         
     try:
@@ -76,6 +76,7 @@ while True:
         #print("Something went wrong")
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={'Something went wrong'}"
         requests.get(url).json() # this sends the new_message
+        time.sleep(300)
 
 
 
