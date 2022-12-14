@@ -72,9 +72,10 @@ while True:
         reset_signal = 1
         time.sleep(300)
         
-    except:
+    except Exception as e:
         #print("Something went wrong")
-        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={'Something went wrong'}"
+        e = str(e) + " \n \n Something went wrong"
+        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={e}"
         requests.get(url).json() # this sends the new_message
         time.sleep(300)
 
