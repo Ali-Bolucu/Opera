@@ -2,6 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import time
+from fake_useragent import UserAgent
 
 reset_signal = 0
 old_message = "" 
@@ -11,7 +12,8 @@ TOKEN = "5741061538:AAFBQz2VitaWwuTX-LJATOaolmFq3Wc3J4E"
 chat_id = "866992945"
 
 url = 'https://biletinial.com/dynamic/getetkinliktakvimi/713?cityId=3'
-headers = {'User-Agent': 'Mozilla/5.0'}
+headers = {'User-Agent': str(ua.random)}
+#headers = {'User-Agent': 'Mozilla/5.0'}
 
 
 while True:
