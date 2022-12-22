@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import time
 from fake_useragent import UserAgent
 
-reset_signal = 0
+reset_signal = 1
 old_message = "" 
 message_backup = ""
 
