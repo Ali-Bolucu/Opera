@@ -74,6 +74,10 @@ while True:
         reset_signal = 1
         time.sleep(300)
         
+        aa = "working"
+        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={aa}"
+        requests.get(url).json() # this sends the new_message
+        
     except Exception as e:
         #print("Something went wrong")
         e = str(e) + " \n \n Something went wrong"
