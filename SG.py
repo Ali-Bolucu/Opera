@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import time
 from fake_useragent import UserAgent
 
-reset_signal = 1
+reset_signal = 0
 old_message = "" 
 message_backup = ""
 
@@ -13,14 +13,14 @@ chat_id = "866992945"
 
 ua = UserAgent()
 
-url = 'https://biletinial.com/dynamic/getetkinliktakvimi/713?cityId=3'
+url_web = 'https://biletinial.com/dynamic/getetkinliktakvimi/713?cityId=3'
 headers = {'User-Agent': str(ua.random)}
 #headers = {'User-Agent': 'Mozilla/5.0'}
 
 
 while True:
     #print("Getting webstite")
-    opera = requests.get(url, headers=headers)
+    opera = requests.get(url_web, headers=headers)
 
     if opera.status_code == 200:
         new_message = ""
