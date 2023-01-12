@@ -48,7 +48,8 @@ while True:
             date  = " ".join(date.split())
             #print(date + " || " + name)
             new_message += date + " || " + name + "\n \n"
-        
+            
+        new_message = re.sub(r'[&%+-]', '', new_message)
         message_backup = new_message
 
         if new_message != old_message and reset_signal:
@@ -60,7 +61,6 @@ while True:
                 
                 new_message = new_message.replace(old_message,"")
                 new_message = "!!NEW \n" + new_message
-                new_message = re.sub(r'[&%+-]', '', new_message)
                 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
                 [requests.get(url).json() and time.sleep(15) for x in range(20)] # this sends the new_message
                 
