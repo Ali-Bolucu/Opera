@@ -3,6 +3,7 @@ import json
 from bs4 import BeautifulSoup
 import time
 from fake_useragent import UserAgent
+import re
 
 reset_signal = 0
 old_message = "" 
@@ -59,6 +60,7 @@ while True:
                 
                 new_message = new_message.replace(old_message,"")
                 new_message = "!!NEW \n" + new_message
+                new_message = re.sub(r'[&%+-]', '', new_message)
                 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
                 [requests.get(url).json() and time.sleep(15) for x in range(20)] # this sends the new_message
                 
