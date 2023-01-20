@@ -25,7 +25,7 @@ while True:
 
     if opera.status_code == 200:
         new_message = ""
-        #print("Website is on \n")
+        #print("Website is on \n \n")
     else:
         new_message = opera
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={new_message}"
