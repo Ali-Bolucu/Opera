@@ -18,6 +18,10 @@ url_web = 'https://biletinial.com/dynamic/getetkinliktakvimi/713?cityId=3'
 headers = {'User-Agent': str(ua.random)}
 #headers = {'User-Agent': 'Mozilla/5.0'}
 
+e = "Start working"
+url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={e}"
+requests.get(url).json() # this sends the new_message
+
 
 while True:
     #print("Getting webstite")
@@ -77,13 +81,14 @@ while True:
             
         reset_signal = 1
         time.sleep(300)
-        
+
+    '''
     except Exception as e:
         #print("Something went wrong")
         e = str(e) + " \n \n Something went wrong"
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={e}"
         requests.get(url).json() # this sends the new_message
         time.sleep(300)
-
+    '''
 
 
