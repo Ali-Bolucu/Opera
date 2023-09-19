@@ -8,7 +8,7 @@ import re
 class bot(object):      
     def __init__(self) -> None:
         
-        self.bResetSignal = bool(True)
+        self.bResetSignal = bool(False)
         self.URL_RESPONSE = str("Initialized")
         self.text = str("Initialized")
         self.tickets = str("Initialized")  
