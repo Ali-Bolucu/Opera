@@ -13,7 +13,7 @@ class bot(object):
         self.text = str("Initialized")
         self.tickets = str("Initialized")  
         self.stored_tickets = str("stored_tickets")
-        self.current_tickets = str("current_tickets")
+        self.current_tickets = str("")
     
         self.API_TOKEN = "5741061538:AAFBQz2VitaWwuTX-LJATOaolmFq3Wc3J4E"
         self.CHAT_ID = "866992945"
