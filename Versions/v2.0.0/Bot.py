@@ -62,23 +62,17 @@ class bot(object):
                 requests.get(self.BOT_URL(str( "NEW !!\n" + self.current_tickets.replace(self.stored_tickets, "")))).json()
             elif self.current_tickets in self.stored_tickets:  # Sends the deleted tickets
                 requests.get(self.BOT_URL(str( "Deleted !!\n" + self.stored_tickets.replace(self.current_tickets, "")))).json()
+                
+            time.sleep(3600) # if threre is a change, wait 1 hour before checking again
         
         self.stored_tickets = self.current_tickets
         self.current_tickets = str("") # Empty the string
-        self.bResetSignal = True  
-        time.sleep(7200)
+        self.bResetSignal = True 
+        time.sleep(150) # checks the website every 2.5 minute
+        
                 
-    
-    
-            
-            
-            
-        
+#----------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-        
 def main() -> None:
     botobj = bot()
     botobj.start_message()
@@ -88,7 +82,7 @@ def main() -> None:
             botobj.url_parser()
             botobj.send_tickets()
         else:
-            time.sleep(300)
+            time.sleep(3600) # if the website gives error, wait 1 hour
     
 if __name__ == "__main__" :
     main()
