@@ -68,7 +68,7 @@ class bot(object):
         self.stored_tickets = self.current_tickets
         self.current_tickets = str("") # Empty the string
         self.bResetSignal = True 
-        time.sleep(150) # checks the website every 2.5 minute
+        time.sleep(15000) # checks the website every 2.5 minute
         
                 
 #----------------------------------------------------------------------------------------------------------------------------------
